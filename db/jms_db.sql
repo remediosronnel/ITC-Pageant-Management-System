@@ -1,15 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2022 at 06:34 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.5
+-- Generation Time: Oct 21, 2025 at 03:37 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `jms_db`
@@ -30,19 +36,19 @@ CREATE TABLE `contestants` (
   `txt_code` text NOT NULL,
   `rand_code` int(15) NOT NULL,
   `txtPollScore` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `contestants`
 --
 
 INSERT INTO `contestants` (`contestant_id`, `fullname`, `subevent_id`, `contestant_ctr`, `status`, `txt_code`, `rand_code`, `txtPollScore`) VALUES
-(5, 'Contestant 101', 2, 1, 'finish', '', 829106, 0),
-(6, 'Contestant 102', 2, 2, 'finish', '', 314095, 0),
-(7, 'Contestant 103', 2, 3, 'finish', '', 8021723, 0),
-(8, 'Contestant 104', 2, 4, 'finish', '', 8021724, 0),
-(9, 'Contestant 105', 2, 5, 'finish', '', 8021725, 0),
-(10, 'Contestant 106', 2, 6, 'finish', '', 8021726, 0);
+(21, 'BSIS - Asople', 4, 1, 'finish', '', 704629, 0),
+(22, 'Educ - Bunilla', 4, 2, 'finish', '', 131513, 0),
+(23, 'Crim - Rashena', 4, 3, 'finish', '', 7537933, 0),
+(24, 'BSIS - Asople', 5, 1, 'finish', '', 123109, 0),
+(25, 'Educ - Bunilla', 5, 2, 'finish', '', 415235, 0),
+(26, 'Crim - Rashena', 5, 3, 'finish', '', 7397963, 0);
 
 -- --------------------------------------------------------
 
@@ -56,17 +62,23 @@ CREATE TABLE `criteria` (
   `criteria` text NOT NULL,
   `percentage` int(11) NOT NULL,
   `criteria_ctr` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `criteria`
 --
 
 INSERT INTO `criteria` (`criteria_id`, `subevent_id`, `criteria`, `percentage`, `criteria_ctr`) VALUES
-(3, 2, 'Criteria 101', 10, 1),
-(4, 2, 'Criteria 102', 30, 2),
-(5, 2, 'Criteria 103', 20, 3),
-(6, 2, 'Criteria 104', 40, 4);
+(48, 4, 'Stage Presence & Confidence', 35, 1),
+(49, 4, 'Mastery', 30, 2),
+(50, 4, 'Energy & Enthusiasm', 15, 3),
+(51, 4, 'Audience Impact', 10, 4),
+(52, 4, 'Overall Performance', 10, 5),
+(53, 5, 'Stage Presence & Confidence', 35, 1),
+(54, 5, 'Poise & Posture', 30, 2),
+(55, 5, 'Personality & Charisma', 15, 3),
+(56, 5, 'Fitness & Style', 10, 4),
+(57, 5, 'Overall Performance', 10, 5);
 
 -- --------------------------------------------------------
 
@@ -80,18 +92,21 @@ CREATE TABLE `judges` (
   `judge_ctr` int(11) NOT NULL,
   `fullname` text NOT NULL,
   `code` varchar(6) NOT NULL,
-  `jtype` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jtype` varchar(25) NOT NULL,
+  `type_judge` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `judges`
 --
 
-INSERT INTO `judges` (`judge_id`, `subevent_id`, `judge_ctr`, `fullname`, `code`, `jtype`) VALUES
-(4, 2, 1, 'Judge 101', 'zwr37i', ''),
-(5, 2, 2, 'Judge 102', 'yy6aaj', ''),
-(6, 2, 3, 'Judge 103', 'hx1ixu', ''),
-(7, 2, 4, 'Judge 104', 'pzrun4', '');
+INSERT INTO `judges` (`judge_id`, `subevent_id`, `judge_ctr`, `fullname`, `code`, `jtype`, `type_judge`) VALUES
+(14, 4, 1, 'Randy', '111q34', '', ''),
+(15, 4, 2, 'Remedios', 'zrsj53', '', ''),
+(16, 4, 3, 'Yess', '6pw62p', '', ''),
+(17, 5, 1, 'Randy', 'ie76wm', '', ''),
+(18, 5, 2, 'Remedios', 'pjddsw', '', ''),
+(19, 5, 3, 'Yess', 'gpw06n', '', '');
 
 -- --------------------------------------------------------
 
@@ -108,14 +123,14 @@ CREATE TABLE `main_event` (
   `date_start` text NOT NULL,
   `date_end` text NOT NULL,
   `place` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `main_event`
 --
 
 INSERT INTO `main_event` (`mainevent_id`, `event_name`, `status`, `organizer_id`, `sy`, `date_start`, `date_end`, `place`) VALUES
-(2, 'Sample Event Only', 'activated', 21, '2022-2023', '2022-12-01', '2022-12-05', 'Sample Venue only');
+(5, 'MISS INFORMATIC 2025', 'activated', 24, '2025-2026', '2025-10-10', '2025-10-10', 'ITCSF Gymnasium');
 
 -- --------------------------------------------------------
 
@@ -136,7 +151,7 @@ CREATE TABLE `messagein` (
   `Gateway` varchar(10) DEFAULT NULL,
   `UserId` varchar(10) DEFAULT NULL,
   `sendStatus` varchar(25) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -163,7 +178,7 @@ CREATE TABLE `messagelog` (
   `Connector` varchar(80) DEFAULT NULL,
   `UserId` varchar(80) DEFAULT NULL,
   `UserInfo` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -185,7 +200,7 @@ CREATE TABLE `messageout` (
   `ValidityPeriod` int(11) DEFAULT NULL,
   `IsSent` tinyint(1) NOT NULL DEFAULT 0,
   `IsRead` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -211,16 +226,15 @@ CREATE TABLE `organizer` (
   `company_telephone` varchar(55) NOT NULL,
   `company_email` varchar(55) NOT NULL,
   `company_website` varchar(55) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `organizer`
 --
 
 INSERT INTO `organizer` (`organizer_id`, `fname`, `mname`, `lname`, `username`, `password`, `email`, `pnum`, `access`, `org_id`, `status`, `company_name`, `company_address`, `company_logo`, `company_telephone`, `company_email`, `company_website`) VALUES
-(21, 'Mark', 'D', 'Cooper', 'mcooper', 'mcooper123', 'mcooper@mail.com', '0912354879', 'Organizer', '', 'offline', 'Sample Company 101', 'Sample Address 123', '70493-lorem-ipsum.jpg', '+12356489', 'sample@testmail.com', 'N/A'),
-(22, 'judge 1', 'j', 'judge', 'judge101', 'judge101', '', '', 'Organizer', '', 'offline', '', '', '', '', '', ''),
-(23, 'Samantha', 'S', 'Lou', 'sam', 'sam123', '', '', 'Tabulator', '21', 'offline', '', '', '', '', '', '');
+(24, 'Ronnel', '', 'Remedios', 'admin', '1234', 'remedy@gmail.com', '+63938974552', 'Organizer', '', 'offline', 'Informatic College of San Francisco. Inc.', 'Purok 2A, Barangay 5, San Francisco, Agusan del Sur', '5719-itc-logo.png', '+63965845', 'remedy@itc.com', 'www.itc-college.com'),
+(26, 'Michelle', 'Support', 'Support', 'robert', '1234', '', '', 'Tabulator', '24', 'offline', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -233,19 +247,16 @@ CREATE TABLE `rank_system` (
   `subevent_id` varchar(12) NOT NULL,
   `contestant_id` varchar(12) NOT NULL,
   `total_rank` decimal(3,1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rank_system`
 --
 
 INSERT INTO `rank_system` (`rs_id`, `subevent_id`, `contestant_id`, `total_rank`) VALUES
-(1, '2', '5', '9.0'),
-(2, '2', '6', '6.0'),
-(3, '2', '7', '10.0'),
-(4, '2', '8', '7.0'),
-(5, '2', '9', '7.0'),
-(6, '2', '10', '3.0');
+(63, '4', '21', 80.8),
+(64, '4', '22', 90.7),
+(65, '4', '23', 80.7);
 
 -- --------------------------------------------------------
 
@@ -265,14 +276,15 @@ CREATE TABLE `sub_event` (
   `txtpoll_status` text NOT NULL,
   `view` varchar(15) NOT NULL,
   `txtpollview` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sub_event`
 --
 
 INSERT INTO `sub_event` (`subevent_id`, `mainevent_id`, `organizer_id`, `event_name`, `status`, `eventdate`, `eventtime`, `place`, `txtpoll_status`, `view`, `txtpollview`) VALUES
-(2, 2, 21, 'Test Sub Event', 'activated', '2022-12-02', '11:00', 'Sample Sub Event', 'active', 'activated', 'active');
+(4, 5, 24, 'Production Number', 'deactivated', '2025-10-10', '06:00', 'ITCSF Gymnasium', '', '', ''),
+(5, 5, 24, 'Playsuit', 'activated', '2025-10-10', '06:00', 'ITCSF Gymnasium', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -302,25 +314,25 @@ CREATE TABLE `sub_results` (
   `rank` varchar(11) NOT NULL,
   `judge_rank_stat` varchar(15) NOT NULL,
   `place_title` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sub_results`
 --
 
 INSERT INTO `sub_results` (`subresult_id`, `subevent_id`, `mainevent_id`, `contestant_id`, `judge_id`, `total_score`, `deduction`, `criteria_ctr1`, `criteria_ctr2`, `criteria_ctr3`, `criteria_ctr4`, `criteria_ctr5`, `criteria_ctr6`, `criteria_ctr7`, `criteria_ctr8`, `criteria_ctr9`, `criteria_ctr10`, `comments`, `rank`, `judge_rank_stat`, `place_title`) VALUES
-(1, 2, 2, 5, 4, '76.0', 0, '10.0', '8.5', '18.5', '39.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'Sample Comment', '6', '', '5th'),
-(2, 2, 2, 6, 4, '89.5', 0, '8.5', '27.0', '17.5', '36.5', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'test', '5', '', '2nd'),
-(3, 2, 2, 7, 4, '93.5', 0, '9.0', '29.5', '18.0', '37.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '4', '', '6th'),
-(4, 2, 2, 8, 4, '97.5', 0, '10.0', '28.5', '19.5', '39.5', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'Sample', '2', '', '3rd'),
-(5, 2, 2, 9, 4, '95.0', 0, '9.5', '29.0', '18.0', '38.5', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '3', '', '4th'),
-(6, 2, 2, 10, 4, '99.0', 0, '9.5', '29.5', '20.0', '40.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '1', '', '1st'),
-(7, 2, 2, 5, 5, '95.0', 0, '10.0', '29.0', '16.5', '39.5', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '3', '', '5th'),
-(8, 2, 2, 6, 5, '96.0', 0, '10.0', '29.0', '18.5', '38.5', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '1', '', '2nd'),
-(9, 2, 2, 7, 5, '84.5', 0, '9.5', '28.0', '8.0', '39.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '6', '', '6th'),
-(10, 2, 2, 8, 5, '94.0', 0, '9.0', '28.0', '19.0', '38.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '5', '', '3rd'),
-(11, 2, 2, 9, 5, '94.5', 0, '8.0', '28.0', '19.5', '39.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '4', '', '4th'),
-(12, 2, 2, 10, 5, '95.5', 0, '9.5', '29.0', '17.5', '39.5', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '', '2', '', '1st');
+(34, 4, 5, 21, 14, 85.0, 0, 26.5, 27.0, 14.5, 9.0, 8.0, 0.0, 0.0, 0.0, 0.0, 0.0, '', '3', '', '2nd'),
+(35, 4, 5, 22, 14, 91.5, 0, 35.0, 25.5, 14.0, 7.5, 9.5, 0.0, 0.0, 0.0, 0.0, 0.0, '', '1', '', '1st'),
+(36, 4, 5, 23, 14, 88.0, 0, 34.0, 26.5, 8.5, 9.5, 9.5, 0.0, 0.0, 0.0, 0.0, 0.0, '', '2', '', '3rd'),
+(37, 4, 5, 21, 15, 78.0, 0, 18.5, 27.0, 14.5, 9.0, 9.0, 0.0, 0.0, 0.0, 0.0, 0.0, '', '3', '', '2nd'),
+(38, 4, 5, 22, 15, 96.0, 0, 34.5, 29.5, 14.0, 8.5, 9.5, 0.0, 0.0, 0.0, 0.0, 0.0, '', '1', '', '1st'),
+(39, 4, 5, 23, 15, 80.0, 0, 34.5, 18.0, 8.5, 9.5, 9.5, 0.0, 0.0, 0.0, 0.0, 0.0, '', '2', '', '3rd'),
+(40, 4, 5, 21, 16, 79.5, 0, 18.5, 27.0, 15.0, 9.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, '', '2', '', '2nd'),
+(41, 4, 5, 22, 16, 84.5, 0, 26.5, 29.0, 12.5, 9.0, 7.5, 0.0, 0.0, 0.0, 0.0, 0.0, '', '1', '', '1st'),
+(42, 4, 5, 23, 16, 74.0, 0, 21.5, 24.5, 14.0, 4.5, 9.5, 0.0, 0.0, 0.0, 0.0, 0.0, '', '3', '', '3rd'),
+(43, 5, 5, 24, 17, 71.5, 0, 34.5, 7.0, 14.0, 7.0, 9.0, 0.0, 0.0, 0.0, 0.0, 0.0, '', '3', '', ''),
+(44, 5, 5, 25, 17, 85.0, 0, 30.0, 25.5, 13.5, 8.5, 7.5, 0.0, 0.0, 0.0, 0.0, 0.0, '', '1', '', ''),
+(45, 5, 5, 26, 17, 82.0, 0, 33.0, 21.5, 13.5, 7.0, 7.0, 0.0, 0.0, 0.0, 0.0, 0.0, '', '2', '', '');
 
 -- --------------------------------------------------------
 
@@ -333,7 +345,7 @@ CREATE TABLE `textpoll` (
   `contestant_id` varchar(12) NOT NULL,
   `text_vote` int(11) NOT NULL,
   `subevent_id` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Indexes for dumped tables
@@ -343,25 +355,29 @@ CREATE TABLE `textpoll` (
 -- Indexes for table `contestants`
 --
 ALTER TABLE `contestants`
-  ADD PRIMARY KEY (`contestant_id`);
+  ADD PRIMARY KEY (`contestant_id`),
+  ADD KEY `subevent_contestants` (`subevent_id`);
 
 --
 -- Indexes for table `criteria`
 --
 ALTER TABLE `criteria`
-  ADD PRIMARY KEY (`criteria_id`);
+  ADD PRIMARY KEY (`criteria_id`),
+  ADD KEY `subevent_criteria` (`subevent_id`);
 
 --
 -- Indexes for table `judges`
 --
 ALTER TABLE `judges`
-  ADD PRIMARY KEY (`judge_id`);
+  ADD PRIMARY KEY (`judge_id`),
+  ADD KEY `subevent_judges` (`subevent_id`);
 
 --
 -- Indexes for table `main_event`
 --
 ALTER TABLE `main_event`
-  ADD PRIMARY KEY (`mainevent_id`);
+  ADD PRIMARY KEY (`mainevent_id`),
+  ADD KEY `organizer_mainevent` (`organizer_id`);
 
 --
 -- Indexes for table `messagein`
@@ -399,13 +415,15 @@ ALTER TABLE `rank_system`
 -- Indexes for table `sub_event`
 --
 ALTER TABLE `sub_event`
-  ADD PRIMARY KEY (`subevent_id`);
+  ADD PRIMARY KEY (`subevent_id`),
+  ADD KEY `mainevent_subevent` (`mainevent_id`);
 
 --
 -- Indexes for table `sub_results`
 --
 ALTER TABLE `sub_results`
-  ADD PRIMARY KEY (`subresult_id`);
+  ADD PRIMARY KEY (`subresult_id`),
+  ADD KEY `subevent_subresults` (`subevent_id`);
 
 --
 -- Indexes for table `textpoll`
@@ -421,25 +439,25 @@ ALTER TABLE `textpoll`
 -- AUTO_INCREMENT for table `contestants`
 --
 ALTER TABLE `contestants`
-  MODIFY `contestant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `contestant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-  MODIFY `criteria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `criteria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `judges`
 --
 ALTER TABLE `judges`
-  MODIFY `judge_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `judge_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `main_event`
 --
 ALTER TABLE `main_event`
-  MODIFY `mainevent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mainevent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `messagein`
@@ -463,29 +481,73 @@ ALTER TABLE `messageout`
 -- AUTO_INCREMENT for table `organizer`
 --
 ALTER TABLE `organizer`
-  MODIFY `organizer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `organizer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `rank_system`
 --
 ALTER TABLE `rank_system`
-  MODIFY `rs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `rs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `sub_event`
 --
 ALTER TABLE `sub_event`
-  MODIFY `subevent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `subevent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sub_results`
 --
 ALTER TABLE `sub_results`
-  MODIFY `subresult_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `subresult_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `textpoll`
 --
 ALTER TABLE `textpoll`
   MODIFY `textpoll_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `contestants`
+--
+ALTER TABLE `contestants`
+  ADD CONSTRAINT `subevent_contestants` FOREIGN KEY (`subevent_id`) REFERENCES `sub_event` (`subevent_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `criteria`
+--
+ALTER TABLE `criteria`
+  ADD CONSTRAINT `subevent_criteria` FOREIGN KEY (`subevent_id`) REFERENCES `sub_event` (`subevent_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `judges`
+--
+ALTER TABLE `judges`
+  ADD CONSTRAINT `subevent_judges` FOREIGN KEY (`subevent_id`) REFERENCES `sub_event` (`subevent_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `main_event`
+--
+ALTER TABLE `main_event`
+  ADD CONSTRAINT `organizer_mainevent` FOREIGN KEY (`organizer_id`) REFERENCES `organizer` (`organizer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sub_event`
+--
+ALTER TABLE `sub_event`
+  ADD CONSTRAINT `mainevent_subevent` FOREIGN KEY (`mainevent_id`) REFERENCES `main_event` (`mainevent_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sub_results`
+--
+ALTER TABLE `sub_results`
+  ADD CONSTRAINT `subevent_subresults` FOREIGN KEY (`subevent_id`) REFERENCES `sub_event` (`subevent_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
